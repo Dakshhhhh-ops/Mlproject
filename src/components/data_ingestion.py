@@ -9,6 +9,8 @@ from sklearn.model_selection import train_test_split  # train-test split
 
 from dataclasses import dataclass  # used to create config class
 
+from src.components.data_transformation import DataTransformation  # to call data transformation component after ingestion
+from src.components.data_transformation import DataTransformationConfig  # to access preprocessor object path
 
 @dataclass # a box that store paths
 class DataIngestionConfig:  # stores paths required by data ingestion component
@@ -97,4 +99,7 @@ if __name__ == "__main__":
     obj = DataIngestion()
 
     # start data ingestion process
-    obj.initiate_data_ingestion()
+    train_data,test_data=obj.initiate_data_ingestion()
+
+    data_transformation = DataTransformation()  # create object of data transformation class
+    data_transformation.initiate_data_transformation(train_data, test_data)  # start data transformation process
