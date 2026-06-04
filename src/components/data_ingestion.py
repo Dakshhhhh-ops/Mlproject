@@ -12,6 +12,9 @@ from dataclasses import dataclass  # used to create config class
 from src.components.data_transformation import DataTransformation  # to call data transformation component after ingestion
 from src.components.data_transformation import DataTransformationConfig  # to access preprocessor object path
 
+from src.components.model_trainer import ModelTrainer  # to call model trainer component after data transformation
+from src.components.model_trainer import ModelTrainerConfig  # to access trained model path
+
 @dataclass # a box that store paths
 class DataIngestionConfig:  # stores paths required by data ingestion component
 
@@ -102,4 +105,7 @@ if __name__ == "__main__":
     train_data,test_data=obj.initiate_data_ingestion()
 
     data_transformation = DataTransformation()  # create object of data transformation class
-    data_transformation.initiate_data_transformation(train_data, test_data)  # start data transformation process
+    train_arr,test_arr,_=data_transformation.initiate_data_transformation(train_data, test_data)  # start data transformation process
+
+    model_trainer = ModelTrainer()  # create object of model trainer class
+    print(model_trainer.initiate_model_trainer(train_arr, test_arr))  # start model trainer process
