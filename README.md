@@ -38,7 +38,7 @@ MIproject/
 ## ⚙️ Installation
 
 ```bash
-git clone https://github.com/Dakshhhhh-ops/MIproject.git
+git clone [https://github.com/Dakshhhhh-ops/MIproject.git](https://github.com/Dakshhhhh-ops/Mlproject)
 cd MIproject
 
 pip install -r requirements.txt
